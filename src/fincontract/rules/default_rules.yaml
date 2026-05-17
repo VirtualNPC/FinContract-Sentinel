@@ -1,0 +1,20 @@
+- id: negative_amount
+  name: Detect negative amounts
+  type: regex
+  pattern: "\\b-\\d+(?:\\.\\d+)?\\b"
+  risk_score: 60
+  message: "Negative amount detected"
+
+- id: missing_currency
+  name: Missing currency marker
+  type: keyword_absent
+  keyword: "USD"
+  risk_score: 20
+  message: "Currency marker missing"
+
+- id: approval_clause
+  name: Approval clause
+  type: keyword
+  keyword: "approval"
+  risk_score: 15
+  message: "Approval clause found"

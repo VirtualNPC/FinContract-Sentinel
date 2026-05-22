@@ -4,13 +4,19 @@ import re
 import yaml
 
 from fincontract.core.errors import RuleError
+from fincontract.knowledge.retriever import KnowledgeRetriever
 
 
 class RuleEngine:
-    def __init__(self, rules_path: Path | None = None) -> None:
+    def __init__(
+        self,
+        rules_path: Path | None = None,
+        retriever: KnowledgeRetriever | None = None,
+    ) -> None:
         default_path = Path(__file__).resolve().parents[1] / "rules" / "default_rules.yaml"
         self.rules_path = rules_path or default_path
         self.rules = self._load_rules()
+        self.retriever = retriever
 
     def _load_rules(self) -> list[dict]:
         try:
@@ -43,9 +49,22 @@ class RuleEngine:
         return results
 
     def _format_result(self, rule: dict, evidence: str | None = None) -> dict:
+        basis = self._resolve_basis(rule)
+        basis_required = bool(rule.get("basis_required", True))
+        basis_missing = basis_required and not basis
         return {
             "rule_id": rule.get("id", "unknown"),
             "message": rule.get("message", ""),
             "risk_score": int(rule.get("risk_score", 0)),
             "evidence": evidence,
+            "basis": basis,
+            "basis_missing": basis_missing,
         }
+
+    def _resolve_basis(self, rule: dict) -> list[dict]:
+        basis_refs = rule.get("basis_refs", [])
+        if not isinstance(basis_refs, list) or not basis_refs:
+            return []
+        if not self.retriever:
+            return []
+        return self.retriever.lookup(basis_refs)

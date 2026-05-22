@@ -4,6 +4,9 @@
   pattern: "\\b-\\d+(?:\\.\\d+)?\\b"
   risk_score: 60
   message: "Negative amount detected"
+  basis_required: true
+  basis_refs:
+    - INTERNAL_FINANCE_POLICY#amount_positive
 
 - id: missing_currency
   name: Missing currency marker
@@ -11,6 +14,9 @@
   keyword: "USD"
   risk_score: 20
   message: "Currency marker missing"
+  basis_required: true
+  basis_refs:
+    - INTERNAL_FINANCE_POLICY#currency_required
 
 - id: approval_clause
   name: Approval clause
@@ -18,3 +24,6 @@
   keyword: "approval"
   risk_score: 15
   message: "Approval clause found"
+  basis_required: true
+  basis_refs:
+    - INTERNAL_CONTRACT_POLICY#approval_clause

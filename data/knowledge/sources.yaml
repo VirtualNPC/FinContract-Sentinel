@@ -1,0 +1,92 @@
+version: 1
+sources:
+  - id: npc_flk
+    name: npc_law_database
+    category: contract_law
+    base_url: https://flk.npc.gov.cn
+    seed_urls:
+      - https://flk.npc.gov.cn/
+    list_page_patterns: []
+    doc_page_patterns:
+      - detail2\.html
+    keywords:
+      - 合同
+      - 公司
+      - 招标
+      - 劳动
+      - 民法典
+      - 财务
+    max_list_pages: 3
+    max_docs: 200
+    notes: official national laws and regulations database
+  - id: mof_accounting
+    name: mof_accounting_department
+    category: accounting_standards
+    base_url: http://kjs.mof.gov.cn
+    seed_urls:
+      - http://kjs.mof.gov.cn/zhengcefabu/
+      - http://kjs.mof.gov.cn/zhengcejiedu/
+      - http://kjs.mof.gov.cn/gongzuotongzhi/
+      - http://kjs.mof.gov.cn/kuaijifagui/
+    list_page_patterns:
+      - index_\d+\.htm
+      - index_\d+\.html
+    doc_page_patterns:
+      - t\d{8}_\d+\.htm
+    keywords:
+      - 会计准则
+      - 会计法
+      - 会计制度
+      - 解释
+      - 指南
+      - 规范
+    max_list_pages: 20
+    max_docs: 400
+    notes: official accounting standards and interpretations
+  - id: chinatax_fgk
+    name: chinatax_policy_library
+    category: tax_policy
+    base_url: https://fgk.chinatax.gov.cn
+    seed_urls:
+      - https://fgk.chinatax.gov.cn/zcfgk/c100006/listflfg.html
+      - https://fgk.chinatax.gov.cn/zcfgk/c100012/listgg.html
+      - https://fgk.chinatax.gov.cn/zcfgk/c100013/listtz.html
+      - https://fgk.chinatax.gov.cn/zcfgk/c100028/zcwj.html?siteCode=bm29000002&searchWord=&type=&pageSize=10&pageNum=0&orderBy=5
+    list_page_patterns:
+      - common_list
+      - list\w+\.html
+      - pageNum=\d+
+    doc_page_patterns:
+      - /c\d+/content\.html
+    keywords:
+      - 税
+      - 增值税
+      - 企业所得税
+      - 个人所得税
+      - 发票
+      - 征收
+    max_list_pages: 30
+    max_docs: 600
+    notes: official tax policies and announcements
+  - id: spc_judicial
+    name: supreme_peoples_court
+    category: judicial_interpretation
+    base_url: https://www.court.gov.cn
+    seed_urls:
+      - https://www.court.gov.cn/fabu/gengduo/16.html
+      - https://www.court.gov.cn/fabu/gengduo/17.html
+      - https://www.court.gov.cn/shenpan/gengduo/77.html
+    list_page_patterns:
+      - gengduo/\d+\.html
+    doc_page_patterns:
+      - xiangqing/\d+\.html
+    keywords:
+      - 解释
+      - 规定
+      - 审理
+      - 指导性案例
+      - 指导
+      - 意见
+    max_list_pages: 15
+    max_docs: 300
+    notes: judicial interpretations and guidance cases

@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     redis_url: str = Field(default="redis://localhost:6379/0", validation_alias="REDIS_URL")
     vector_store: str = Field(default="chroma", validation_alias="VECTOR_STORE")
     ocr_provider: str = Field(default="aliyun", validation_alias="OCR_PROVIDER")
+    knowledge_dir: str = Field(default="./data/knowledge", validation_alias="KNOWLEDGE_DIR")
 
     ocr_aliyun_key: str | None = Field(default=None, validation_alias="OCR_ALIYUN_KEY")
     ocr_aliyun_secret: str | None = Field(default=None, validation_alias="OCR_ALIYUN_SECRET")

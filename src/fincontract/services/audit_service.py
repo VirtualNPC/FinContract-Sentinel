@@ -12,4 +12,7 @@ def audit_document(request: AuditRequest) -> AuditResponse:
         risk_score=state.risk_score or 0,
         risk_level=state.risk_level or "low",
         findings=findings,
+        overall_result=state.overall_result,
+        next_step=state.next_step,
+        summary=state.summary,
     )
